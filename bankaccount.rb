@@ -1,5 +1,4 @@
-require 'errors' 
-
+require 'errors'
 class BankAccount
   include  Errors
   @@user_account_details = {}
@@ -15,11 +14,12 @@ class BankAccount
     @@user_account_details.store( "#{@account_number}", name: @name, amount: @amount)   
     @@user_pin.store("#{@account_number}", pin: @pin)
     @transactions = []
+    @@user_account_details
   end 
   
-  def close_account(acc)
-    @@user_account_details.delete("#{acc}")  
+  def close_account(acc)   
     @@user_pin.delete("#{acc}")
+    @@user_account_details.delete("#{acc}")
   end 
   
   def withdraw(acc, amount)
@@ -42,7 +42,7 @@ class BankAccount
     if @transactions.any?
       puts @transactions
     else
-     puts 'you dont have any transactions' 
+      puts 'you dont have any transactions' 
     end
  end 
   
