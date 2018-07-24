@@ -1,6 +1,7 @@
 require 'errors'
 class BankAccount
   include  Errors
+<<<<<<< HEAD
   @@user_account_details = {}  
   
   def open_account(name)    
@@ -14,6 +15,26 @@ class BankAccount
   end 
   
   def close_account(acc)  
+=======
+  @@user_account_details = {}
+  @@user_pin = {}
+  
+  def open_account(name)  
+    @name = name
+    @amount = 0  
+    @account_number = generate_account_number
+    puts @account_number
+    @pin = BankAccount.generate_pin
+    puts @pin
+    @@user_account_details.store( "#{@account_number}", name: @name, amount: @amount)   
+    @@user_pin.store("#{@account_number}", pin: @pin)
+    @transactions = []
+    @@user_account_details
+  end 
+  
+  def close_account(acc)   
+    @@user_pin.delete("#{acc}")
+>>>>>>> dab91469a5276fbab15cd1842bed8b149d8633a1
     @@user_account_details.delete("#{acc}")
   end 
   
@@ -50,7 +71,11 @@ class BankAccount
   end 
   
   def account_exist?(account_number)  
+<<<<<<< HEAD
     if @@user_account_details.include?(account_number)    
+=======
+    if @@user_account_details.include?(account_number)
+>>>>>>> dab91469a5276fbab15cd1842bed8b149d8633a1
       account_number   
     else
       puts "account does not exist"
@@ -59,7 +84,11 @@ class BankAccount
   
   private
   
+<<<<<<< HEAD
   def generate_pin
+=======
+  def self.generate_pin
+>>>>>>> dab91469a5276fbab15cd1842bed8b149d8633a1
     rand(6**6)
   end
 
